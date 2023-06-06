@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ShowCard = ({ show }) => {
-    // console.log(show);
+
+//destructure object for clean code
     const { name, id, type, language, runtime, image } = show.show;
-// console.log( show.show)
     return (
         <div >
             <div className="col h-100">

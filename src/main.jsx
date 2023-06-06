@@ -5,12 +5,12 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import "./index.css";
 import Summary from './Pages/Summary/Summary';
 import ShowBookingForm from './Pages/ShowBookingForm/ShowBookingForm';
 import MainLayout from './Layout/MainLayout';
 import Home from './Pages/Home/Home/Home';
 import ErrorPage from './Pages/ErrorPage/ErrorPage';
+import BookedShow from './Pages/BookedShow/BookedShow';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,7 +30,11 @@ const router = createBrowserRouter([
         {
           path : '/bookingForm',
           element : <ShowBookingForm></ShowBookingForm>
-        }
+        },
+        {
+          path: '/bookedShows',
+          element: <BookedShow></BookedShow>
+          }
        
     ]
     },

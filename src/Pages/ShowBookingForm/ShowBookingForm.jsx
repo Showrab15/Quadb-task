@@ -2,13 +2,12 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const UpdateJobModal = (props) => {
 
 
     const { showSummary } = props;
-    //   console.log(handleJobUpdate);
 
 
     const handleShowBooking = event => {
@@ -18,20 +17,26 @@ const UpdateJobModal = (props) => {
         const showDay = form.showDay.value;
         const showTime = form.showTime.value;
         const showCountry = form.showCountry.value;
-        const BookingDetails = {
+        const bookingDetails = {
             showName: showName,
             showTime: showTime,
             showDay: showDay,
             showCountry: showCountry
         }
-     
 
-        const bookingDetailsJSON = JSON.stringify(BookingDetails);
 
-        // Store the JSON string in local storage under the key "bookingDetails"
-        localStorage.setItem("bookingDetails", bookingDetailsJSON);
-        form.reset()
+
+        const existingData = JSON.parse(localStorage.getItem("bookingData")) || [];
+
+        //new bought ticket added in previous data
+        const updatedData = [...existingData, bookingDetails];
+
+        // set data in local Storage
+        localStorage.setItem("bookingData", JSON.stringify(updatedData));
+        toast('Ticket Bought Successfully')
+        props.onHide();
     }
+
     return (
         <Modal
             {...props}
@@ -43,7 +48,7 @@ const UpdateJobModal = (props) => {
                     className="text-center w-100 m-auto"
                     id="contained-modal-title-vcenter"
                 >
-                    Book {showSummary.name}
+                    Book   {showSummary.name} Show
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -65,7 +70,7 @@ const UpdateJobModal = (props) => {
                         <label htmlFor="exampleFormControlInput1" className="form-label ms-2 mt-2">Show's Country</label>
                         <input type="text" name="showCountry" className="form-control ms-2" id="exampleFormControlInput1" value={showSummary?.network?.country?.name} />
                     </div>
-                    <input className="btn mt-4 ms-2 btn-primary" type="submit" value="Booked" />
+                    <input className="btn mt-4 ms-2 btn-primary" type="submit" value="Buy Ticket" />
 
                 </form>
 
