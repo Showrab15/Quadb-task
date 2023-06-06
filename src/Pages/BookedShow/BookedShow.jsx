@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import dynamicTitle from "../../hooks/DynamicTitle";
 
 
@@ -19,12 +20,12 @@ const BookedShow = () => {
             <th scope="col">#</th>
             <th scope="col">Show Name</th>
             <th scope="col">Show Time</th>
-            <th scope="col">SHow Day</th>
-            <th scope="col">SHow Country</th>
+            <th scope="col">Show Day</th>
+            <th scope="col">Show Country</th>
           </tr>
         </thead>
         <tbody>
-          {bookingData.map((booking, index) => (
+          { bookingData.length == 0 ? <h2  className="display-4 mb-5 mt-5 text-center fw-semibold">You Don't have Booked Any Show </h2>:  bookingData.map((booking, index) => (
             <tr key={index}>
               <th scope="row">{index + 1}</th>
               <td>{booking.showName}</td>
